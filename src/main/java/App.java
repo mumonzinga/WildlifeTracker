@@ -1,4 +1,4 @@
-package main.java;
+
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -102,7 +102,7 @@ public class App {
 
 
             try {
-                Sighting sighting = new Sighting(animal_id, location, ranger_name);
+                main.java.Sighting sighting = new main.java.Sighting(animal_id, location, ranger_name);
             } catch (IllegalArgumentException exception) {
                 System.out.println("Please enter Ranger name.");
             }
@@ -113,7 +113,7 @@ public class App {
         //retrieving all sightings
         get("/sightings", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-            model.put("sightings", Sighting.all());
+            model.put("sightings", main.java.Sighting.all());
             model.put("Animal", Animal.class);
             model.put("template", "templates/sightings.vtl");
             return new ModelAndView(model, layout);
@@ -124,7 +124,7 @@ public class App {
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("animal", Animal.find(Integer.parseInt(request.params(":id"))));
             model.put("endangered", Endangered.find(Integer.parseInt(request.params(":id"))));
-            model.put("Sighting", Sighting.class);
+            model.put("Sighting", main.java.Sighting.class);
             model.put("template", "templates/animal.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
@@ -163,7 +163,7 @@ public class App {
         //retriving edit  sightings form
         get("/sightings/:id/edit", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-            model.put("sighting", Sighting.find(Integer.parseInt(request.params(":id"))));
+            model.put("sighting", main.java.Sighting.find(Integer.parseInt(request.params(":id"))));
             model.put("Animal", Animal.class);
             model.put("template", "templates/SightingForm.vtl");
             return new ModelAndView(model, layout);
@@ -175,7 +175,7 @@ public class App {
             int id = Integer.parseInt(request.params(":id"));
             String location = request.queryParams("location");
             String rangerName = request.queryParams("rangerName");
-            Sighting sighting = Sighting.find(id);
+            main.java.Sighting sighting = main.java.Sighting.find(id);
             sighting.setLocation(location);
             sighting.setRangerName(rangerName);
             sighting.update();
@@ -193,7 +193,7 @@ public class App {
         //deleting a sighting
         get("/sightings/:id/delete", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-            Sighting.find(Integer.parseInt(request.params(":id"))).delete();
+            main.java.Sighting.find(Integer.parseInt(request.params(":id"))).delete();
             response.redirect("/sightings");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
