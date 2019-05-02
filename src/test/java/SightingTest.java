@@ -1,4 +1,4 @@
-package test.java;
+
 import org.sql2o.*;
 import org.junit.*;
 import java.sql.Timestamp;
@@ -11,20 +11,20 @@ public class SightingTest{
     @Rule
     public DatabaseRule database = new DatabaseRule();
 
-    private Sighting testSighting;
+    private main.java.Sighting testSighting;
     private Animal  testAnimal;
     @Before
     public void setUp() {
 
 
-        testSighting = new Sighting(1, "Zone A", "Ronald");
+        testSighting = new main.java.Sighting(1, "Zone A", "Ronald");
     }
 
 
 
     @Test
     public void Sighting_instantiatesCorrectly() {
-        assertTrue(testSighting instanceof Sighting);
+        assertTrue(testSighting instanceof main.java.Sighting);
     }
 
     @Test
@@ -52,45 +52,45 @@ public class SightingTest{
     }
     @Test
     public void equals_returnsTrueIfAllPropertiesAreTheSame() {
-        Sighting anotherSighting = new Sighting(1, "Zone A", "Ronald");
+        main.java.Sighting anotherSighting = new main.java.Sighting(1, "Zone A", "Ronald");
         assertEquals(true, testSighting.equals(anotherSighting));
     }
 
     @Test
     public void save_assignsIdToObject() {
         testSighting.save();
-        Sighting savedSighting = Sighting.all().get(0);
+        main.java.Sighting savedSighting = main.java.Sighting.all().get(0);
         assertEquals(testSighting.getId(), savedSighting.getId());
     }
 
     @Test
     public void save_insertsObjectIntoDatabase() {
         testSighting.save();
-        assertTrue(Sighting.all().get(0).equals(testSighting));
+        assertTrue(main.java.Sighting.all().get(0).equals(testSighting));
     }
 
     @Test
     public void all_returnsAllInstancesOfSighting_true() {
         testSighting.save();
-        Sighting otherSighting = new Sighting(1, "Zone B",  "Baraka");
+        main.java.Sighting otherSighting = new main.java.Sighting(1, "Zone B",  "Baraka");
         otherSighting.save();
-        assertEquals(true, Sighting.all().get(0).equals(testSighting));
-        assertEquals(true, Sighting.all().get(1).equals(otherSighting));
+        assertEquals(true, main.java.Sighting.all().get(0).equals(testSighting));
+        assertEquals(true, main.java.Sighting.all().get(1).equals(otherSighting));
     }
 
     @Test
     public void find_returnsSightingWithSameId_secondSighting() {
         testSighting.save();
-        Sighting otherSighting = new Sighting(1, "Zone B",  "Daniels");
+        main.java.Sighting otherSighting = new main.java.Sighting(1, "Zone B",  "Daniels");
         otherSighting.save();
-        assertEquals(Sighting.find(otherSighting.getId()), otherSighting);
+        assertEquals(main.java.Sighting.find(otherSighting.getId()), otherSighting);
     }
 
     @Test
     public void delete_deletesSighting() {
         testSighting.save();
         testSighting.delete();
-        assertEquals(0, Sighting.all().size());
+        assertEquals(0, main.java.Sighting.all().size());
     }
 
 }
