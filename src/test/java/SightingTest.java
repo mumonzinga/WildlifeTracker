@@ -1,3 +1,4 @@
+package test.java;
 import org.sql2o.*;
 import org.junit.*;
 import java.sql.Timestamp;

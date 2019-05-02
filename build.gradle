@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-group 'com.wildlifetracker.peter'
+group 'com.wildlifetracker.mumo'
 version '1.0-SNAPSHOT'
 
 
@@ -23,6 +23,7 @@ dependencies {
     compile group: 'org.sql2o', name: 'sql2o', version: '1.5.4'
     compile group: 'org.postgresql', name: 'postgresql', version: "9.4-1201-jdbc41"
     compile group: 'org.slf4j', name : 'slf4j-simple', version: '1.7.21'
+    implementation 'junit:junit:4.12'
 }
 defaultTasks = ['clean']
 task stage(dependsOn: ['clean', 'installDist'])

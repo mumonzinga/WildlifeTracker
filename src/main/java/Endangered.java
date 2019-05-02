@@ -1,6 +1,8 @@
 package main.java;
 
 import org.sql2o.*;
+
+import java.sql.Connection;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.Timestamp;
