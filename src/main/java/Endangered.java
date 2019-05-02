@@ -70,7 +70,7 @@ public class Endangered extends Animal {
 
     // finding endangered animal with a static type that will apply to animal class too
     public static Endangered find(int id) {
-        try(Connection con = main.java.DB.sql2o.open()) {
+        try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM animals WHERE id = :id";
             return con.createQuery(sql)
                     .addParameter("id", id)
@@ -82,7 +82,7 @@ public class Endangered extends Animal {
     //Overriding update method from Animal class for endangered animal
     @Override
     public void update() {
-        try(Connection con = main.java.DB.sql2o.open()) {
+        try(Connection con = DB.sql2o.open()) {
             String sql = "UPDATE animals SET name = :name, health = :health, age = :age WHERE id = :id";
             con.createQuery(sql)
                     .addParameter("name", name)
