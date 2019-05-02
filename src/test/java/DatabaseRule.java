@@ -1,7 +1,7 @@
 
 import org.junit.rules.ExternalResource;
 import org.sql2o.*;
-import sun.rmi.transport.Connection;
+import org.sql2o.Connection;
 
 public class DatabaseRule extends ExternalResource {
 
@@ -16,7 +16,7 @@ public class DatabaseRule extends ExternalResource {
 
         String deleteEndangeredAnimalsQuery = "DELETE FROM endangered_animals *;";
         String deleteSightingsQuery = "DELETE FROM sightings *;";
-        try(Connection  = main.java.DB.sql2o.open()) {
+        try(Connection con = main.java.DB.sql2o.open()) {
             ((org.sql2o.Connection) con).createQuery(deleteAnimalsQuery).executeUpdate();
             ((org.sql2o.Connection) con).createQuery(deleteEndangeredAnimalsQuery).executeUpdate();
             ((org.sql2o.Connection) con).createQuery(deleteSightingsQuery).executeUpdate();
