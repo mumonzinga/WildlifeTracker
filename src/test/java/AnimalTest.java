@@ -56,41 +56,4 @@ public class AnimalTest{
         Animal anotherAnimal = new Animal("Monkey");
         assertTrue(testAnimal.equals(anotherAnimal));
     }
-
-    @Test
-    public void save_assignsIdToObject() {
-        testAnimal.save();
-        Animal savedAnimal = Animal.all().get(0);
-        assertEquals(testAnimal.getId(), savedAnimal.getId());
-    }
-
-    @Test
-    public void save_insertsObjectIntoDatabase() {
-        testAnimal.save();
-        assertTrue(Animal.all().get(0).equals(testAnimal));
-    }
-
-    @Test
-    public void all_returnsAllInstancesOfAnimal_false() {
-        testAnimal.save();
-        Animal otherAnimal = new Animal("Deer");;
-        otherAnimal.save();
-        assertEquals(true, Animal.all().get(0).equals(testAnimal));
-        assertEquals(true, Animal.all().get(1).equals(otherAnimal));
-    }
-
-    @Test
-    public void find_returnsAnimalWithSameId() {
-        testAnimal.save();
-        Animal anotherAnimal = new Animal("Deer");
-        anotherAnimal.save();
-        assertEquals(Animal.find(anotherAnimal.getId()), anotherAnimal);
-    }
-
-    @Test
-    public void delete_deletesAnimal() {
-        testAnimal.save();
-        testAnimal.delete();
-        assertEquals(0, Animal.all().size());
-    }
 }

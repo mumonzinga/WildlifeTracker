@@ -17,7 +17,7 @@ public class SightingTest{
     public void setUp() {
 
 
-        testSighting = new Sighting(1, "Zone A", "Ronald");
+        testSighting = new Sighting(23, "mks", "tosh");
     }
 
 
@@ -36,19 +36,19 @@ public class SightingTest{
     @Test
     public void getAnimalId_sightingInstantiatesWithAnimalId(){
         testSighting.save();
-        assertEquals(1, testSighting.getAnimalId());
+        assertEquals(23, testSighting.getAnimalId());
     }
 
     @Test
     public void getLocation_sightingInstantiatesWithLocation(){
         testSighting.save();
-        assertEquals("Zone A", testSighting.getLocation());
+        assertEquals("mks", testSighting.getLocation());
     }
 
     @Test
     public void getRangerName_sightingInstantiatesWithRangerName(){
         testSighting.save();
-        assertEquals("Ronald", testSighting.getRangerName());
+        assertEquals("tosh", testSighting.getRangerName());
     }
     @Test
     public void equals_returnsTrueIfAllPropertiesAreTheSame() {

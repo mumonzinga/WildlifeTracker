@@ -88,7 +88,7 @@ public class Sighting implements DatabaseManagement{
     //Listing sighting by animal id
     public static List<Sighting> allByAnimal(int animalId) {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM sightings WHERE animal_id = :animalId ORDER BY timestamp DESC";
+            String sql = "SELECT * FROM sightings WHERE animal_id = animal_id ORDER BY timestamp DESC";
             return con.createQuery(sql)
                     .addParameter("animalId", animalId)
                     .executeAndFetch(Sighting.class);
@@ -108,7 +108,7 @@ public class Sighting implements DatabaseManagement{
     // finding a sighting using its id && with unchecked exception  that ensures index number entered by the user is within the range of the array.
     public static Sighting find(int id) {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM sightings WHERE id=:id;";
+            String sql = "SELECT * FROM sightings WHERE id=id;";
             Sighting sighting = con.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Sighting.class);
@@ -121,7 +121,7 @@ public class Sighting implements DatabaseManagement{
     //implement method delete() from Database management class
     public void delete(){
         try(Connection con = DB.sql2o.open()) {
-            String sql = "DELETE FROM sightings WHERE id=:id;";
+            String sql = "DELETE FROM sightings WHERE id=id;";
             con.createQuery(sql)
                     .addParameter("id",id)
                     .executeUpdate();
