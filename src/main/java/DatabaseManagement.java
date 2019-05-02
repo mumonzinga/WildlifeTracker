@@ -1,6 +1,6 @@
 
 
-public class DatabaseManagement {
-    public void  save() {}
-    public void delete() {}
+public interface DatabaseManagement {
+     void  save() ;
+     void delete() ;
 }

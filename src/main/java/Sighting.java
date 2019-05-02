@@ -64,7 +64,7 @@ public class Sighting implements DatabaseManagement{
     public void save() {
         String sql = "INSERT INTO sightings (animal_id, location, ranger_name, timestamp) VALUES (:animal_id, :location, :ranger_name, now());";
         System.out.println("INSERT INTO sightings (animal_id, location, ranger_name, timestamp) VALUES (:animal_id, :location, :ranger_name, now());");
-        try (Connection con = DB.sql2o.open()) {
+        try (Connection con = main.java.DB.sql2o.open()) {
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("animal_id", this.animal_id)
                     .addParameter("location", this.location)
@@ -78,7 +78,7 @@ public class Sighting implements DatabaseManagement{
     public static List<Sighting> all() {
         String sql = "SELECT * FROM sightings ORDER BY timestamp DESC;";
 
-        try (Connection con = DB.sql2o.open()) {
+        try (Connection con = main.java.DB.sql2o.open()) {
             return con.createQuery(sql)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(Sighting.class);
@@ -87,7 +87,7 @@ public class Sighting implements DatabaseManagement{
 
     //Listing sighting by animal id
     public static List<Sighting> allByAnimal(int animalId) {
-        try(Connection con = DB.sql2o.open()) {
+        try(Connection con = main.java.DB.sql2o.open()) {
             String sql = "SELECT * FROM sightings WHERE animal_id = :animalId ORDER BY timestamp DESC";
             return con.createQuery(sql)
                     .addParameter("animalId", animalId)
@@ -107,7 +107,7 @@ public class Sighting implements DatabaseManagement{
 
     // finding a sighting using its id && with unchecked exception  that ensures index number entered by the user is within the range of the array.
     public static Sighting find(int id) {
-        try(Connection con = DB.sql2o.open()) {
+        try(Connection con = main.java.DB.sql2o.open()) {
             String sql = "SELECT * FROM sightings WHERE id=:id;";
             Sighting sighting = con.createQuery(sql)
                     .addParameter("id", id)
@@ -120,7 +120,7 @@ public class Sighting implements DatabaseManagement{
 
     //implement method delete() from Database management class
     public void delete(){
-        try(Connection con = DB.sql2o.open()) {
+        try(Connection con = main.java.DB.sql2o.open()) {
             String sql = "DELETE FROM sightings WHERE id=:id;";
             con.createQuery(sql)
                     .addParameter("id",id)
@@ -132,7 +132,7 @@ public class Sighting implements DatabaseManagement{
     public void update() {
         String sql = "UPDATE sightings SET location = :location, ranger_name = :ranger_name WHERE id = :id";
 
-        try(Connection con = DB.sql2o.open()) {
+        try(Connection con = main.java.DB.sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("location", location)
                     .addParameter("rangername", ranger_name)
