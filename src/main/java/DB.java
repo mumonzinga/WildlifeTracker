@@ -1,4 +1,4 @@
-package main.java;
+
 
 import org.sql2o.*;
 import java.net.URI;
@@ -21,7 +21,7 @@ public class DB {
             String host = dbUri.getHost();
             String path = dbUri.getPath();
             String username = (dbUri.getUserInfo() == null) ? "mumo" : dbUri.getUserInfo().split(":")[0];
-            String password = (dbUri.getUserInfo() == null) ? "pw*0711937973" : dbUri.getUserInfo().split(":")[1];
+            String password = (dbUri.getUserInfo() == null) ? "pw*kinyanjui" : dbUri.getUserInfo().split(":")[1];
 
             sql2o = new Sql2o("jdbc:postgresql://" + host + ":" + port + path, username, password);
         } catch (URISyntaxException e ) {
