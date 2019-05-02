@@ -1,4 +1,4 @@
-package main.java;
+
 
 
 import java.sql.Timestamp;
@@ -8,7 +8,7 @@ import org.sql2o.*;
 import java.util.List;
 
 
-public class Sighting implements main.java.DatabaseManagement {
+public class Sighting implements DatabaseManagement{
 
     private int id;
     private int animal_id;
